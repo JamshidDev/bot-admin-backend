@@ -1,0 +1,22 @@
+{
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "joi": "^17.11.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^7.6.1",
+    "multer": "^1.4.5-lts.1"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "name": "bot-admin-backend",
+  "description": "Bot admin panel",
+  "version": "1.0.0",
+  "main": "server.js",
+  "devDependencies": {},
+  "author": "Jamshid Raximov",
+  "license": "ISC"
+}
