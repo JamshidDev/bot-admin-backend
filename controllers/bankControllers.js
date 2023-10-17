@@ -8,8 +8,8 @@ const get_bank = async (req, res) => {
     let search = req.query.search || "";
     let total_item = 0;
 
-    total_item = await BANK.countDocuments({});
-    let bank = await BANK.find({active:true, result_uz: { $regex: search, $options: "i" } })
+    total_item = await BANK.countDocuments({active:true, result_uz: { $regex: search, $options: "i" }, result_ru: { $regex: search, $options: "i" } });
+    let bank = await BANK.find({active:true, result_uz: { $regex: search, $options: "i" }, result_ru: { $regex: search, $options: "i" } })
       .sort({ created_at: sort })
       .skip((page - 1) * per_page)
       .limit(per_page);
