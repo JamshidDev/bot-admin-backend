@@ -2,7 +2,7 @@ const MEMBER = require("../models/memberModels");
 
 const create_member = async (req, res) => {
   try {
-    let { fullName, user_id, username, referal_id } = req.body;
+    let { fullName, user_id, username, referal_id, lang } = req.body;
     let existUser = await MEMBER.findOne({ user_id });
 
     if (!existUser) {
@@ -17,10 +17,8 @@ const create_member = async (req, res) => {
         user_id,
         username,
         referal_id,
+        lang
       });
-
-      console.log(member);
-
       return res.status(200).json({
         status: true,
         message: "Muvofaqiyatli ro'yhatga olindi!",
@@ -31,6 +29,7 @@ const create_member = async (req, res) => {
         fullName,
         user_id,
         username,
+        lang,
         active: true,
       });
       return res.status(200).json({

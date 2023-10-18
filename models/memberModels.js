@@ -12,6 +12,10 @@ const memberSchema = mongoose.Schema({
     type: String,
     default: null,
   },
+  lang: {
+    type: String,
+    required:true,
+  },
   invited_users: {
     type: Number,
     default: 0,

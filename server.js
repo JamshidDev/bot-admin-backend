@@ -14,6 +14,8 @@ const auth = require("./middleware/authMiddleware")
 const authRouter = require("./router/authRouter");
 const bankRouter = require("./router/bankRouter")
 const botRouter = require("./router/botRouter")
+const userRouter = require("./router/userRouter")
+const serviceRouter = require("./router/serviceRouter")
 
 
 
@@ -26,7 +28,11 @@ app.use(cors());
 
 app.use("/", authRouter);
 app.use("/bot", botRouter);
+app.use("/user",auth, userRouter);
+
+// custom
 app.use("/bank",auth, bankRouter);
+app.use("/service",auth, serviceRouter);
 
 
 
