@@ -67,16 +67,29 @@ const update_bank = async (req, res) => {
   try {
     let bank_id = req.params.bank_id;
     let { debet, kredit, result_uz, result_ru } = req.body;
-    let bank = await BANK.findByIdAndUpdate(bank_id, {
-      debet,
-      kredit,
-      result_uz,
-      result_ru,
-    });
-    res.status(200).json({
-      status: true,
-      message: "Muvofaqiyatli tahrirlandi",
-    });
+
+    let existBank = await BANK.findOne({ debet, kredit, active:true });
+    if(!existBank){
+      let bank = await BANK.findByIdAndUpdate(bank_id, {
+        debet,
+        kredit,
+        result_uz,
+        result_ru,
+      });
+      res.status(200).json({
+        status: true,
+        message: "Muvofaqiyatli tahrirlandi",
+      });
+    }else{
+      res.status(200).json({
+        status: true,
+        message: "Mavjud bo'lgan debet va kredit raqamlar",
+        data:existBank
+      });
+    }
+
+
+
   } catch (error) {
     console.log(error.message);
     res.status(500).json({

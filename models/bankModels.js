@@ -7,11 +7,11 @@ const bankSchema = mongoose.Schema(
       required: true,
     },
     debet: {
-      type: Number,
+      type: String,
       required: true,
     },
     kredit: {
-      type: Number,
+      type: String,
       required: true,
     },
     result_uz: {
