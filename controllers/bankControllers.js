@@ -69,7 +69,7 @@ const update_bank = async (req, res) => {
     let { debet, kredit, result_uz, result_ru } = req.body;
 
     let existBank = await BANK.findOne({ debet, kredit, active:true });
-    if(!existBank  && existBank?._id !== bank_id){
+    if(existBank  &&  existBank?._id == bank_id){
       let bank = await BANK.findByIdAndUpdate(bank_id, {
         debet,
         kredit,
