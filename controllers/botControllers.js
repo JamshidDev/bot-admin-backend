@@ -1,4 +1,5 @@
 const MEMBER = require("../models/memberModels");
+const CATEGORY = require("../models/categoryModels");
 
 const create_member = async (req, res) => {
   try {
@@ -123,4 +124,26 @@ const user_statistic = async (req, res) => {
   }
 }
 
-module.exports = { create_member, remove_user, get_all_details, user_statistic };
+
+const premium_services = async  (req,res)=>{
+  try{
+    const services = await  CATEGORY.find({active:true});
+    return res.status(200).json({
+      status: true,
+      data: services,
+      message: null,
+    });
+
+  }catch(error){
+    console.log(error.message);
+    return res.status(500).json({
+      status: false,
+      message: error.message,
+    });
+  }
+}
+
+
+
+
+module.exports = {premium_services, create_member, remove_user, get_all_details, user_statistic };
