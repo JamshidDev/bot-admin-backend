@@ -29,6 +29,30 @@ const get_bank = async (req, res) => {
   }
 };
 
+
+// const   backup_database = async ()=>{
+//   for(const item of list){
+//     try{
+//
+//       let count = await BANK.countDocuments({});
+//       let bank = await BANK.create({
+//         number: count + 1,
+//         debet:item.debet,
+//         kredit:item.kredit,
+//         result_uz:item.result_uz,
+//         result_ru:item.result_ru,
+//         active:item.active
+//       });
+//       console.log(bank)
+//     }catch (error){
+//       console.log(error)
+//     }
+//   }
+// }
+
+
+
+
 const create_bank = async (req, res) => {
   try {
     let { debet, kredit, result_uz, result_ru } = req.body;

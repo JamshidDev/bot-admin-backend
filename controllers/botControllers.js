@@ -1,5 +1,6 @@
 const MEMBER = require("../models/memberModels");
 const CATEGORY = require("../models/categoryModels");
+const BANK = require("../models/bankModels")
 
 const create_member = async (req, res) => {
   try {
@@ -143,7 +144,30 @@ const premium_services = async  (req,res)=>{
   }
 }
 
+const search_bank = async  (req, res)=>{
+  try{
+    const {debet, kredit} = req.params;
+    const result = await  BANK.find({
+      debet:{ $regex: new RegExp(debet, 'i') },
+      kredit:{ $regex: new RegExp(kredit, 'i') },
+      active:true,
+    })
+    return res.status(200).json({
+      status: true,
+      data: result,
+      message: null,
+    });
+
+  }catch (error){
+    console.log(error.message);
+    return res.status(500).json({
+      status: false,
+      message: error.message,
+    });
+  }
+}
 
 
 
-module.exports = {premium_services, create_member, remove_user, get_all_details, user_statistic };
+
+module.exports = {search_bank,premium_services, create_member, remove_user, get_all_details, user_statistic };
